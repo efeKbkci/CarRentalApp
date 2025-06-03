@@ -27,3 +27,7 @@ class User(BaseEntity):
     email: str
     birth_date: datetime
     priority: Priority
+
+@dataclass
+class RegistrationFormDTO(User):
+    password: str
