@@ -1,9 +1,11 @@
 class DBTranscation():
+    def __init__(self,connection: DatabaseConnection):
+        pass
     def get_entities(self,table :Table, query:str) -> list[BaseEntity]:
         pass
-    def add_new_entity(table: Table, query : str) -> bool:
+    def add_new_entity(self,table: Table, data: dict) -> bool:
         pass
-    def update_entity(table: Table, data:dict) -> bool:
+    def update_entity(self,table: Table, data:dict) -> bool:
         pass
-    def delete_entity(table : Table, entity_id:str) -> bool:
+    def delete_entity(self,table : Table, entity_id:str) -> bool:
         pass
