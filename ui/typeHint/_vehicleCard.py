@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\uiFiles\vehicleCard.ui'
+# Form implementation generated from reading ui file '.\ui\uiFiles\vehicleCard.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.1
 #
@@ -9,20 +9,23 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Card(object):
-    def setupUi(self, Card):
-        Card.setObjectName("Card")
-        Card.resize(300, 300)
+class Ui_vehicle_card(object):
+    def setupUi(self, vehicle_card):
+        vehicle_card.setObjectName("vehicle_card")
+        vehicle_card.resize(300, 300)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Card.sizePolicy().hasHeightForWidth())
-        Card.setSizePolicy(sizePolicy)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(Card)
+        sizePolicy.setHeightForWidth(vehicle_card.sizePolicy().hasHeightForWidth())
+        vehicle_card.setSizePolicy(sizePolicy)
+        vehicle_card.setMinimumSize(QtCore.QSize(300, 300))
+        vehicle_card.setMaximumSize(QtCore.QSize(300, 300))
+        vehicle_card.setStyleSheet("border-radius:4px;")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(vehicle_card)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.frame = QtWidgets.QFrame(parent=Card)
+        self.frame = QtWidgets.QFrame(parent=vehicle_card)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -31,7 +34,9 @@ class Ui_Card(object):
         self.frame.setMinimumSize(QtCore.QSize(300, 300))
         self.frame.setMaximumSize(QtCore.QSize(300, 300))
         self.frame.setStyleSheet("QFrame {\n"
-"    background-color: rgb(229, 220, 218);\n"
+"    background-color: #383838;\n"
+"    color: #F0F0F0;\n"
+"    border-radius: 9px;\n"
 "}\n"
 "")
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
@@ -46,7 +51,7 @@ class Ui_Card(object):
         sizePolicy.setHeightForWidth(self.brand.sizePolicy().hasHeightForWidth())
         self.brand.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setFamily("Roboto Mono SemiBold")
+        font.setFamily("Roboto Mono Medium")
         font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
@@ -65,12 +70,12 @@ class Ui_Card(object):
         self.features.setFont(font)
         self.features.setObjectName("features")
         self.verticalLayout.addWidget(self.features)
-        self.label_2 = QtWidgets.QLabel(parent=self.frame)
-        self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap(".\\uiFiles\\../assets/cars/clio.webp"))
-        self.label_2.setScaledContents(True)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout.addWidget(self.label_2)
+        self.carImage = QtWidgets.QLabel(parent=self.frame)
+        self.carImage.setText("")
+        self.carImage.setPixmap(QtGui.QPixmap(".\\ui\\uiFiles\\../../assets/cars/clio.webp"))
+        self.carImage.setScaledContents(True)
+        self.carImage.setObjectName("carImage")
+        self.verticalLayout.addWidget(self.carImage)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.price = QtWidgets.QLabel(parent=self.frame)
@@ -80,7 +85,7 @@ class Ui_Card(object):
         sizePolicy.setHeightForWidth(self.price.sizePolicy().hasHeightForWidth())
         self.price.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setFamily("Roboto Mono SemiBold")
+        font.setFamily("Roboto Mono Medium")
         font.setPointSize(17)
         font.setBold(True)
         font.setWeight(75)
@@ -97,13 +102,13 @@ class Ui_Card(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout_2.addWidget(self.frame)
 
-        self.retranslateUi(Card)
-        QtCore.QMetaObject.connectSlotsByName(Card)
+        self.retranslateUi(vehicle_card)
+        QtCore.QMetaObject.connectSlotsByName(vehicle_card)
 
-    def retranslateUi(self, Card):
+    def retranslateUi(self, vehicle_card):
         _translate = QtCore.QCoreApplication.translate
-        Card.setWindowTitle(_translate("Card", "Form"))
-        self.brand.setText(_translate("Card", "Renualt Clio"))
-        self.features.setText(_translate("Card", "Otomatik | Dizel | 2024"))
-        self.price.setText(_translate("Card", "$10"))
-        self.label_3.setText(_translate("Card", "| Daily"))
+        vehicle_card.setWindowTitle(_translate("vehicle_card", "Form"))
+        self.brand.setText(_translate("vehicle_card", "Renualt Clio"))
+        self.features.setText(_translate("vehicle_card", "Otomatik | Dizel | 2024"))
+        self.price.setText(_translate("vehicle_card", "$10"))
+        self.label_3.setText(_translate("vehicle_card", "| Daily"))

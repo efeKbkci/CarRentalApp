@@ -1,27 +1,18 @@
-from typing import Optional
-from model import User
 from .session import Session
-from model import RegistrationFormDTO
-from enum import Enum
-
-class DBTransaction:
-    pass
-class MailService:
-    pass
-
-class Table(Enum):
-    USER_TABLE = "user"
-    CAR_RENTAL = "car"
-    APPOINTMENTS_TABLE = "appointments"
+from typing import Optional
+from model import RegistrationFormDTO, User
+from database import Table
 
 class Authentication:
-    def __init__(self):
+    def __init__(self, app_controller):
+        from app_controller import AppController
+        self.app_controller:AppController = app_controller
         self.session: Optional[Session] = None
 
-    def verify_login_credentials(self, db_transaction: DBTransaction, credentials: dict) -> Optional[User]:
+    def verify_login_credentials(self, credentials: dict) -> Optional[User]:
         query = f' SELECT * FROM user WHERE email = {credentials["email"]}, password = {credentials["password"]}'
         
-        user_list:list = db_transaction.get_entities(Table.USER_TABLE, query) # type: ignore
+        user_list:list = self.app_controller.db_transaction.get_entities(Table.USER_TABLE, query) # type: ignore
         
         if not len(user_list): # Is the user registered in the database?
             return None
@@ -30,10 +21,10 @@ class Authentication:
             self.start_new_session(user)
             return user 
 
-    def save_new_user(self, db_transaction: DBTransaction, form: RegistrationFormDTO) -> bool:
-        return db_transaction.add_new_entity(Table.USER_TABLE, form.convert_dict()) # type: ignore
+    def save_new_user(self, form: RegistrationFormDTO) -> bool:
+        return self.app_controller.db_transaction.add_new_entity(Table.USER_TABLE, form.convert_dict()) # type: ignore
 
-    def verify_verification_code(self, mail_service: MailService, email: str) -> None:
+    def verify_verification_code(self, email: str) -> None: # TODO: MAIL SERVICE
         pass
 
     def start_new_session(self, user: User) -> None:

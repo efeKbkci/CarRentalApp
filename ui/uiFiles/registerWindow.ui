@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Register</class>
- <widget class="QWidget" name="Register">
+ <class>register</class>
+ <widget class="QWidget" name="register">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -42,7 +42,7 @@
     </spacer>
    </item>
    <item alignment="Qt::AlignHCenter">
-    <widget class="QLabel" name="registerLabel">
+    <widget class="QLabel" name="register_label">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -68,104 +68,8 @@
      <property name="verticalSpacing">
       <number>35</number>
      </property>
-     <item row="1" column="0">
-      <widget class="QLineEdit" name="idTf">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>270</width>
-         <height>51</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>51</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Roboto Mono</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="placeholderText">
-        <string>ID Number</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLineEdit" name="birthDateTf">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>270</width>
-         <height>51</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>51</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Roboto Mono</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="placeholderText">
-        <string>Birth Date</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="passwordTf">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>270</width>
-         <height>51</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>51</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Roboto Mono</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>Password</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="passwordAgainTf">
+      <widget class="QLineEdit" name="password_again_tf">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -195,8 +99,42 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="name_tf">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>51</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>51</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Mono</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Name</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="0" alignment="Qt::AlignHCenter">
-      <widget class="QLineEdit" name="usernameTf">
+      <widget class="QLineEdit" name="email_tf">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -222,12 +160,12 @@
         </font>
        </property>
        <property name="placeholderText">
-        <string>Username or Mail</string>
+        <string>Email</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="driverLicenceTf">
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="password_tf">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -252,22 +190,77 @@
          <pointsize>10</pointsize>
         </font>
        </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton  {
-	background-color: #383838;
-	color : #F0F0F0;
-	border-radius: 4px;
-}</string>
+       <property name="placeholderText">
+        <string>Password</string>
        </property>
-       <property name="text">
-        <string>Upload Your Driver Licence</string>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLineEdit" name="birthdate_tf">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>51</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>51</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Mono</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="placeholderText">
+        <string>Birth Date</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="id_tf">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>51</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>51</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Roboto Mono</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="placeholderText">
+        <string>ID Number</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item alignment="Qt::AlignHCenter">
-    <widget class="QPushButton" name="registerBtn">
+    <widget class="QPushButton" name="register_btn">
      <property name="minimumSize">
       <size>
        <width>400</width>

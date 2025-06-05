@@ -9,16 +9,16 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_AdminMain(object):
-    def setupUi(self, AdminMain):
-        AdminMain.setObjectName("AdminMain")
-        AdminMain.resize(1000, 750)
-        AdminMain.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(AdminMain)
+class Ui_admin_main(object):
+    def setupUi(self, admin_main):
+        admin_main.setObjectName("admin_main")
+        admin_main.resize(1000, 750)
+        admin_main.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(admin_main)
         self.verticalLayout_2.setContentsMargins(20, 20, 20, 20)
         self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.table = QtWidgets.QTableWidget(parent=AdminMain)
+        self.table = QtWidgets.QTableWidget(parent=admin_main)
         self.table.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.table.setStyleSheet("QHeaderView::section { \n"
 "    background-color: #252A34; \n"
@@ -60,7 +60,7 @@ class Ui_AdminMain(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSpacing(5)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.searchBtn = QtWidgets.QPushButton(parent=AdminMain)
+        self.searchBtn = QtWidgets.QPushButton(parent=admin_main)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -76,7 +76,7 @@ class Ui_AdminMain(object):
 "}")
         self.searchBtn.setObjectName("searchBtn")
         self.horizontalLayout_2.addWidget(self.searchBtn)
-        self.searchTf = QtWidgets.QLineEdit(parent=AdminMain)
+        self.searchTf = QtWidgets.QLineEdit(parent=admin_main)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -98,7 +98,7 @@ class Ui_AdminMain(object):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.horizontalLayout.addLayout(self.horizontalLayout_2)
-        self.enableEditingBox = QtWidgets.QCheckBox(parent=AdminMain)
+        self.enableEditingBox = QtWidgets.QCheckBox(parent=admin_main)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Maximum, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -106,30 +106,30 @@ class Ui_AdminMain(object):
         self.enableEditingBox.setSizePolicy(sizePolicy)
         self.enableEditingBox.setObjectName("enableEditingBox")
         self.horizontalLayout.addWidget(self.enableEditingBox)
-        self.carBox = QtWidgets.QCheckBox(parent=AdminMain)
+        self.carBox = QtWidgets.QCheckBox(parent=admin_main)
         self.carBox.setObjectName("carBox")
         self.horizontalLayout.addWidget(self.carBox)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
-        self.retranslateUi(AdminMain)
-        QtCore.QMetaObject.connectSlotsByName(AdminMain)
+        self.retranslateUi(admin_main)
+        QtCore.QMetaObject.connectSlotsByName(admin_main)
 
-    def retranslateUi(self, AdminMain):
+    def retranslateUi(self, admin_main):
         _translate = QtCore.QCoreApplication.translate
-        AdminMain.setWindowTitle(_translate("AdminMain", "Form"))
+        admin_main.setWindowTitle(_translate("admin_main", "Form"))
         self.table.setSortingEnabled(False)
         item = self.table.horizontalHeaderItem(0)
-        item.setText(_translate("AdminMain", "Car"))
+        item.setText(_translate("admin_main", "Car"))
         item = self.table.horizontalHeaderItem(1)
-        item.setText(_translate("AdminMain", "Model"))
+        item.setText(_translate("admin_main", "Model"))
         item = self.table.horizontalHeaderItem(2)
-        item.setText(_translate("AdminMain", "Year"))
+        item.setText(_translate("admin_main", "Year"))
         item = self.table.horizontalHeaderItem(3)
-        item.setText(_translate("AdminMain", "Gear"))
+        item.setText(_translate("admin_main", "Gear"))
         item = self.table.horizontalHeaderItem(4)
-        item.setText(_translate("AdminMain", "Gas"))
+        item.setText(_translate("admin_main", "Gas"))
         item = self.table.horizontalHeaderItem(5)
-        item.setText(_translate("AdminMain", "Price"))
-        self.searchBtn.setText(_translate("AdminMain", "Search"))
-        self.enableEditingBox.setText(_translate("AdminMain", "Editing"))
-        self.carBox.setText(_translate("AdminMain", "Show Car"))
+        item.setText(_translate("admin_main", "Price"))
+        self.searchBtn.setText(_translate("admin_main", "Search"))
+        self.enableEditingBox.setText(_translate("admin_main", "Editing"))
+        self.carBox.setText(_translate("admin_main", "Show Car"))

@@ -1,5 +1,5 @@
-from ui.windows import CarSelectionWindow, LoginWindow, UserMainWindow, AdminMainWindow, RegisterWindow
-from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtWidgets import QApplication
+from app_controller import AppController
 from assets.fonts import FontFamilies
 import sys
 import os
@@ -18,7 +18,8 @@ if __name__ == "__main__":
 
     FontFamilies.loadFonts()
 
-    widget = CarSelectionWindow()
+    app_controller = AppController()
 
-    widget.show()
+    app_controller.window_manager.show()
+
     sys.exit(app.exec())

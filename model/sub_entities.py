@@ -26,6 +26,7 @@ class User(BaseEntity):
     surname: str
     email: str
     birth_date: datetime
+    identity_number: int
     priority: Priority
 
 @dataclass

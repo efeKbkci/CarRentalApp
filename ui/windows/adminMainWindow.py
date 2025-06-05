@@ -1,10 +1,10 @@
 from .. import *
-from ..typeHint import Ui_AdminMain
+from ..typeHint import Ui_admin_main
 from PyQt6.QtWidgets import QVBoxLayout, QTableWidget, QTableWidgetItem, QHeaderView
 from PyQt6.QtGui import QColor
 from PyQt6.QtCore import Qt
 
-class AdminMainWindow(QWidget, Ui_AdminMain):
+class AdminMainWindow(QWidget, Ui_admin_main):
     def __init__(self):
         super().__init__()
         loadUi(r"ui\uiFiles\adminMainWindow.ui", self)

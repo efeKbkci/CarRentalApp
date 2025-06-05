@@ -7,6 +7,7 @@ class UserMainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setFixedSize(800, 600)
+        self.setObjectName("user_main")
         self.__create_buttons()
 
     def __create_buttons(self):

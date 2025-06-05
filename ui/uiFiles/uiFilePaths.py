@@ -1,9 +1,14 @@
-from enum import Enum
+from os.path import join
 
-class UiFilePaths(Enum):
+class UiFilePaths:
+    __base_directory = r".\ui\uiFiles"
 
-    LOGIN = r".\ui\uiFiles\loginWindow.ui"
-    REGISTER = r".\ui\uiFiles\registerWindow.ui"
-    VEHICLE_CARD = r".\ui\uiFiles\vehicleCard.ui"
-    CAR_SELECTION = r".\ui\uiFiles\carSelectionWindow.ui"
-    MAIN = r".\ui\uiFiles\userMainWindow.ui"
+    LOGIN = join(__base_directory, "loginWindow.ui")
+    REGISTER = join(__base_directory, "registerWindow.ui")
+    USER_MAIN = join(__base_directory, "userMainWindow.ui")
+    ADMIN_MAIN = join(__base_directory, "adminMainWindow.ui")
+    APPOINTMENTS = join(__base_directory, "appointmentsWindow.ui")
+    APPOINTMENT_CARD = join(__base_directory, "appointmentCard.ui")
+    CAR_SELECTION = join(__base_directory, "carSelectionWindow.ui")
+    VEHICLE_CARD = join(__base_directory, "vehicleCard.ui")
+    BOOKING = join(__base_directory, "bookingWindow.ui")

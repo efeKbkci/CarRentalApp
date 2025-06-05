@@ -36,3 +36,12 @@ class Validation:
         today = datetime.today()
         eighteen_years_ago = today - relativedelta(years=18)
         return birth_date <= eighteen_years_ago
+    
+    @staticmethod
+    def check_birth_date_format(birth_date: str) -> bool:
+        # Expected format: DD.MM.YYYY
+        try:
+            datetime.strptime(birth_date, r"%d.%m.%Y")  
+            return True
+        except:
+            return False
