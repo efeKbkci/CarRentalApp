@@ -26,7 +26,7 @@ class Validation:
 
     @staticmethod
     def check_email_format(email: str) -> bool:
-        # [\w\.]+ : efkanefekabakcii, efkan.5412, efe78-85
+        # [\w\.-]+ : efkanefekabakcii, efkan.5412, efe78-85
         # @ : @
         # [\w\.]+ : Domain part. "gmail.com", "firat.edu.tr", "outlook.com"
         return bool(re.search(r"^[\w\.-]+@[\w\.]+\.\w+$", email))

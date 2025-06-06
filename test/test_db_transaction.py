@@ -15,7 +15,6 @@ def db():
     db_transaction.conn.commit()
     db_transaction.conn.close()
     
-
 def test_add_and_get_user(db):
     user = User(
         name="Jane Doe",

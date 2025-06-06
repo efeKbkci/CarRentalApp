@@ -4,7 +4,7 @@ from ..typeHint import Ui_register
 from ..additionalMethods import loadBg
 from account import Validation
 from datetime import datetime
-from model import RegistrationFormDTO
+from model import User, Priority
 
 class RegisterWindow(QWidget, Ui_register):    
 
@@ -36,12 +36,13 @@ class RegisterWindow(QWidget, Ui_register):
 
     def on_register_btn_clicked(self):
 
-        form = RegistrationFormDTO(
-            email = self.email_tf.text(),
-            password = self.password_tf.text(),
-            birthdate = self.birthdate_tf.text(),
-            name = self.name_tf.text(),
-            identity_number = self.id_tf.text()
+        form = User(
+            self.name_tf.text(),
+            self.email_tf.text(),
+            self.birthdate_tf.text(),
+            self.password_tf.text(),
+            Priority.NORMAL_USER.value,
+            self.id_tf.text()
         )
 
         if self.app_controller.authentication.save_new_user(form):

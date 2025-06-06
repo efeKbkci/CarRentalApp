@@ -43,8 +43,14 @@ class DBTransaction:
         columns = ", ".join(data.keys()) # entity_id, name, email
         placeholder = ", ".join("?" * data.__len__()) # ?, ?, ?
         values = tuple(data.values()) # 123-dth-51-cv, efe, efkanefekabakcii@gmail.com
-        self.cursor.execute(f"INSERT INTO {table.value} ({columns}) VALUES ({placeholder})", values)
-        self.conn.commit()
+        
+        try:
+            self.cursor.execute(f"INSERT INTO {table.value} ({columns}) VALUES ({placeholder})", values)
+            self.conn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            print("DEBUG | This email is used already")
+            return False
 
     def update_entity(self, table: Table, entity_id: str, data: dict):
         columns = ", ".join([key + " = ?" for key in data.keys()]) # "name = ?, email = ?"

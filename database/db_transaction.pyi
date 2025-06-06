@@ -36,7 +36,7 @@ class DBTransaction:
         """
         ...
 
-    def add_new_entity(self, table: Table, data: dict) -> None:
+    def add_new_entity(self, table: Table, data: dict) -> bool:
         """
         Adds a new entity to the database.
 
