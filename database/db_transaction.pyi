@@ -29,8 +29,9 @@ class DBTransaction:
 
         :param table: The table from which to retrieve the entity.
         :param filter: A dictionary containing the filter. 
-                       It contains a unique column name and value such as “email”, “entity_id”. 
-                       Example: {"entity_id": "rf-09-pl"}.
+                       It contains a unique column name and value such as “email”, “entity_id”.
+
+                       Example: get_entity(Table.CAR, {"entity_id":"0123-trwd"}) -> SELECT * FROM car WHERE entity_id = ?, ("0123-twrd")
         :return: The entity matching the filter, or None if not found.
         """
         ...
