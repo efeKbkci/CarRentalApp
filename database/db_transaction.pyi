@@ -1,0 +1,63 @@
+from .table import Table
+from model import User, Car, Appointment
+
+class DBTransaction:
+    """
+    Represents database transactions.
+    """
+
+    def __init__(self) -> None:
+        """
+        Initializes the DBTransaction with a database connection.
+        """
+        ...
+
+    def get_entities(self, table: Table, *filter) -> list:
+        """
+        Retrieves entities from the database based on the specified table and filter.
+
+        :param table: The table from which to retrieve entities.
+        :param filter: A list containing the filters. First index is column_name, second operand, third value
+                       Example: [("gas_type", "=", "gasoline"), ("price", "<=", 50))].
+        :return: A list of entities matching the filter criteria.
+        """
+        ...
+
+    def get_entity(self, table: Table, filter: dict) -> 'User | Car | Appointment | None':
+        """
+        Retrieves a single entity from the database based on the specified table and filter.
+
+        :param table: The table from which to retrieve the entity.
+        :param filter: A dictionary containing the filter. 
+                       It contains a unique column name and value such as “email”, “entity_id”. 
+                       Example: {"entity_id": "rf-09-pl"}.
+        :return: The entity matching the filter, or None if not found.
+        """
+        ...
+
+    def add_new_entity(self, table: Table, data: dict) -> None:
+        """
+        Adds a new entity to the database.
+
+        :param table: The table in which to add the new entity.
+        :param data: A dictionary containing the data for the new entity.
+                     Columns are represented as keys and their values as values.
+        """
+        ...
+    
+    def update_entity(self, table: Table, entity_id: str, data: dict) -> None:
+        """
+        Updates an existing entity in the database.
+
+        :param table: The table containing the entity to update.
+        :param entity_id: The ID of the entity to update.
+        :param data: A dictionary containing the updated data for the entity.
+        """
+        ...
+    def delete_entity(self, table: Table, entity_id: str) -> None:
+        """
+        Deletes an entity from the database.
+        :param table: Table to delete the entity 
+        :param entity_id: The ID of the entity to delete.
+        """
+        ...

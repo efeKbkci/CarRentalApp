@@ -1,6 +1,6 @@
 from enum import Enum
 
 class Table(Enum):
-    USER = "user"
-    CAR = "car"
+    USER = "users"
+    CAR = "cars"
     APPOINTMENTS = "appointments"
