@@ -36,23 +36,21 @@ class DBTransaction:
         """
         ...
 
-    def add_new_entity(self, table: Table, data: dict) -> bool:
+    def add_new_entity(self, table: Table, entity: object) -> bool:
         """
         Adds a new entity to the database.
 
         :param table: The table in which to add the new entity.
-        :param data: A dictionary containing the data for the new entity.
-                     Columns are represented as keys and their values as values.
+        :param entity: An entity from model package. It can be User, Car or Appointment
         """
         ...
     
-    def update_entity(self, table: Table, entity_id: str, data: dict) -> None:
+    def update_entity(self, table: Table, updated_entity: object) -> None:
         """
         Updates an existing entity in the database.
 
         :param table: The table containing the entity to update.
-        :param entity_id: The ID of the entity to update.
-        :param data: A dictionary containing the updated data for the entity.
+        :updated_entity: An entity from model package. It can be User, Car or Appointment
         """
         ...
     def delete_entity(self, table: Table, entity_id: str) -> None:
@@ -60,5 +58,10 @@ class DBTransaction:
         Deletes an entity from the database.
         :param table: Table to delete the entity 
         :param entity_id: The ID of the entity to delete.
+        """
+        ...
+    def close_connection(self) -> None:
+        """
+        Closes database connection and prevents any memory leak. 
         """
         ...

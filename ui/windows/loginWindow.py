@@ -1,35 +1,41 @@
-from .windows_enum import Windows
-from .. import *
+from .baseWidget import BaseWidget
+
+from .. import UiFilePaths, loadUi
+from ..constants import Windows, Dialogs
 from ..typeHint import Ui_login
-from ..additionalMethods import loadBg
+
 from account import Validation
 from model import Priority
 
-class LoginWindow(QWidget, Ui_login):    
+import os
+
+class LoginWindow(Ui_login, BaseWidget):    
     def __init__(self, app_controller):
-        super().__init__()
+        super().__init__(app_controller)
         loadUi(UiFilePaths.LOGIN, self)
-        loadBg(self, r"assets\11771164_4850037.jpg") 
+        self.set_background_image(self, os.path.join("assets", "11771164_4850037.jpg"))
 
-        # if we put this line at the top of the file, we'll get "circular import" error.
-        # local import breaks the loop
-        from app_controller import AppController
-        self.app_controller:AppController = app_controller
+        self.set_properties() # set the properties of the widgets for styling
+        self.connect_signals()
 
-        # login button must be disabled until the form data has been entered correctly. 
-        self.login_btn.setDisabled(True)
+    def connect_signals(self):
+        self.login_btn.clicked.connect(self.login_btn_clicked)
+        self.register_btn.clicked.connect(self.register_btn_clicked)
+        self.email_tf.textChanged.connect(self.validate_form)
+        self.password_tf.textChanged.connect(self.validate_form)
 
-        # signals and slots
-        self.login_btn.clicked.connect(self.on_login_btn_clicked)   
-        self.register_btn.clicked.connect(self.on_register_btn_clicked)     
-        self.email_tf.textChanged.connect(self.on_validate_form)
-        self.password_tf.textChanged.connect(lambda: self.on_validate_form(self.email_tf.text(), self.password_tf.text()))
+    def set_properties(self):
+        self.login_btn.setProperty("class", "primary")
+        self.email_tf.setProperty("class", "form")
+        self.password_tf.setProperty("class", "form")   
 
-    def on_login_btn_clicked(self, email, password): 
+    def login_btn_clicked(self): 
+        email = self.email_tf.text().strip()
+        password = self.password_tf.text().strip()
         user = self.app_controller.authentication.verify_login_credentials({"email": email, "password": password})
 
         if not user:
-            print("DEBUG | Your credentials doesn't match with any user")
+            self.app_controller.window_manager.show_dialog(Dialogs.ERROR, "Incorrect Username or Password", "The user information you entered does not match a user", True)
 
         elif user.priority == Priority.NORMAL_USER:
             self.app_controller.window_manager.navigate_to_window(Windows.NORMAL_USER_MAIN)
@@ -37,26 +43,19 @@ class LoginWindow(QWidget, Ui_login):
         elif user.priority == Priority.ADMIN: # I didn't use else keyword directly due to increase understandability
             self.app_controller.window_manager.navigate_to_window(Windows.ADMIN_MAIN)
 
-    def on_register_btn_clicked(self):
+    def register_btn_clicked(self):
         self.app_controller.window_manager.navigate_to_window(Windows.REGISTER)
 
-    def on_validate_form(self):
-        email = self.email_tf.text()
+    def validate_form(self):
+        email = self.email_tf.text().strip()
+        email_validation = Validation.check_email_format(email)
+        email and self.update_error_style(self.email_tf, email_validation, "Check your email format")
+
+        # If email or password is empty, text fields will not go into warning mode.
+        # Only, the validation will be marked as False. 
+
         password = self.password_tf.text()
+        password_validation = bool(password)
+        password and self.update_error_style(self.password_tf, password_validation, "Password cannot be empty")
 
-        email_validation = Validation.check_email_format(email) 
-
-        if email_validation and password != "":
-            self.login_btn.setEnabled(True)
-            print("DEBUG | Button is active again")
-        else:
-            self.login_btn.setDisabled(True)
-            if not email_validation:
-                print("DEBUG | Check your email format")
-            else:
-                print("DEBUG | Password mustn't be empty")
-
-    def resizeEvent(self, a0): # As the window size changes, the size of the background photo also changes.
-        self.backgroundLabel:QLabel
-        self.backgroundLabel.setGeometry(0, 0, self.width(), self.height())
-        return super().resizeEvent(a0)
+        self.login_btn.setEnabled(email_validation and password_validation)

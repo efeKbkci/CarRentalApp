@@ -11,10 +11,16 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -63,39 +69,79 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">#titleWidget {
+      <string notr="true">QLabel {
+	color: #F0F0F0;
+}
+
+#titleWidget {
 	background-color: #1B47E5;
-}</string>
+}
+</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <property name="leftMargin">
        <number>20</number>
       </property>
       <item>
-       <widget class="QLabel" name="slogan">
+       <widget class="QPushButton" name="back_btn">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimumSize">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border: None;
+	background-color: transparent;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../assets/icons/back_navigation.png</normaloff>../../assets/icons/back_navigation.png</iconset>
+        </property>
+        <property name="iconSize">
          <size>
-          <width>458</width>
-          <height>78</height>
+          <width>32</width>
+          <height>32</height>
          </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="window_title_label">
+        <property name="font">
+         <font>
+          <family>Roboto Mono</family>
+          <pointsize>24</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>
         <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>../../assets/Drive_Freedom_Rent_Easy.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
+         <string>Car Selection</string>
         </property>
        </widget>
       </item>
@@ -111,7 +157,7 @@
          <number>12</number>
         </property>
         <item alignment="Qt::AlignRight">
-         <widget class="QLabel" name="nameLabel">
+         <widget class="QLabel" name="user_name_label">
           <property name="font">
            <font>
             <family>Roboto Mono Medium</family>
@@ -119,26 +165,10 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: white;</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>John Doe</string>
-          </property>
-         </widget>
-        </item>
-        <item alignment="Qt::AlignRight">
-         <widget class="QLabel" name="prevligedLabel">
-          <property name="font">
-           <font>
-            <family>Roboto Mono Light</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: white;</string>
-          </property>
-          <property name="text">
-           <string>User</string>
           </property>
          </widget>
         </item>
@@ -206,7 +236,21 @@
        <property name="styleSheet">
         <string notr="true">#filterWidget {
 	background-color: #1E1E1E;
-}</string>
+}
+
+QCheckBox::indicator { /* Kutu kısmını temsil eder */
+    border: none;  /* Kenarlığı kaldır */
+    background-color: white;  /* İç rengi beyaz yap */
+	border-radius : 3px;
+}
+
+QCheckBox::indicator:checked {
+    border: none;  /* Kenarlığı kaldır */
+    background-color: #009D8F;  /* İç rengi beyaz yap */
+	border-radius : 3px;
+}
+
+</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <property name="spacing">
@@ -305,7 +349,7 @@ QLabel {
               <number>15</number>
              </property>
              <item>
-              <widget class="QLineEdit" name="maxPriceTextF">
+              <widget class="QLineEdit" name="min_price_tf">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -341,6 +385,9 @@ QLabel {
 	background-color: rgb(255, 255, 255);
 }</string>
                </property>
+               <property name="inputMethodHints">
+                <set>Qt::ImhDigitsOnly</set>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -353,7 +400,7 @@ QLabel {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="minPriceTextF">
+              <widget class="QLineEdit" name="max_price_tf">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -497,7 +544,7 @@ QLabel {
               <number>15</number>
              </property>
              <item>
-              <widget class="QLineEdit" name="maxYearTextF">
+              <widget class="QLineEdit" name="min_year_tf">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -545,7 +592,7 @@ QLabel {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="minYearTextF">
+              <widget class="QLineEdit" name="max_year_tf">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -637,12 +684,6 @@ QLabel {
 	color : white;
 }
 
-QCheckBox::indicator { /* Kutu kısmını temsil eder */
-    border: none;  /* Kenarlığı kaldır */
-    background-color: white;  /* İç rengi beyaz yap */
-	border-radius : 3px;
-}
-
 #gearTypeWidget {
 	border-bottom: 2px solid white;
 }</string>
@@ -688,7 +729,7 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
               <number>0</number>
              </property>
              <item>
-              <widget class="QCheckBox" name="automatic">
+              <widget class="QCheckBox" name="automatic_cbox">
                <property name="font">
                 <font>
                  <family>Roboto Mono Light</family>
@@ -698,10 +739,13 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
                <property name="text">
                 <string>Automatic</string>
                </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="manual">
+              <widget class="QCheckBox" name="manual_cbox">
                <property name="font">
                 <font>
                  <family>Roboto Mono Light</family>
@@ -710,6 +754,9 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
                </property>
                <property name="text">
                 <string>Manual</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -747,12 +794,6 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
           <property name="styleSheet">
            <string notr="true">QWidget {
 	color : white;
-}
-
-QCheckBox::indicator { /* Kutu kısmını temsil eder */
-    border: none;  /* Kenarlığı kaldır */
-    background-color: white;  /* İç rengi beyaz yap */
-	border-radius : 3px;
 }
 
 #fuelTypeWidget {
@@ -800,7 +841,7 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
               <number>0</number>
              </property>
              <item>
-              <widget class="QCheckBox" name="gasoline">
+              <widget class="QCheckBox" name="gasoline_cbox">
                <property name="font">
                 <font>
                  <family>Roboto Mono Light</family>
@@ -810,10 +851,13 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
                <property name="text">
                 <string>Gasoline</string>
                </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="diesel">
+              <widget class="QCheckBox" name="diesel_cbox">
                <property name="font">
                 <font>
                  <family>Roboto Mono Light</family>
@@ -826,75 +870,12 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
                <property name="text">
                 <string>Diesel</string>
                </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
             </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QWidget" name="statusWidget" native="true">
-          <property name="styleSheet">
-           <string notr="true">QWidget {
-	color : white;
-}
-
-QCheckBox::indicator { /* Kutu kısmını temsil eder */
-    border: none;  /* Kenarlığı kaldır */
-    background-color: white;  /* İç rengi beyaz yap */
-	border-radius : 3px;
-}
-
-#statusWidget {
-	border-bottom: 2px solid white;
-}</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <property name="leftMargin">
-            <number>15</number>
-           </property>
-           <property name="topMargin">
-            <number>10</number>
-           </property>
-           <property name="rightMargin">
-            <number>15</number>
-           </property>
-           <property name="bottomMargin">
-            <number>10</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="fuelTypeLabel_2">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <family>Roboto Mono Medium</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>Status</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox">
-             <property name="font">
-              <font>
-               <family>Roboto Mono Light</family>
-               <pointsize>10</pointsize>
-               <kerning>true</kerning>
-              </font>
-             </property>
-             <property name="text">
-              <string>Available</string>
-             </property>
-            </widget>
            </item>
           </layout>
          </widget>
@@ -917,7 +898,7 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
            <number>20</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="searchTextF">
+           <widget class="QLineEdit" name="search_tf">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -962,7 +943,7 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="applyBtn">
+           <widget class="QPushButton" name="apply_btn">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -979,18 +960,13 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
              <font>
               <family>Roboto Mono Medium</family>
               <pointsize>11</pointsize>
-              <weight>7</weight>
+              <weight>50</weight>
               <italic>false</italic>
               <bold>false</bold>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton {
-	background-color: #1B47E5;
-	color : white;
-	border-radius: 4px;
-	font: 57 11pt &quot;Roboto Mono Medium&quot;;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Apply</string>
@@ -1037,7 +1013,7 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
-       <widget class="QWidget" name="carWidget">
+       <widget class="QWidget" name="widget_for_cards">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -1049,23 +1025,6 @@ QCheckBox::indicator { /* Kutu kısmını temsil eder */
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QHBoxLayout" name="carWidgetLayout">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-        </layout>
        </widget>
       </widget>
      </item>

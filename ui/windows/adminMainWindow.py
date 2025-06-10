@@ -1,33 +1,114 @@
 from .. import *
 from ..typeHint import Ui_admin_main
-from PyQt6.QtWidgets import QVBoxLayout, QTableWidget, QTableWidgetItem, QHeaderView
-from PyQt6.QtGui import QColor
-from PyQt6.QtCore import Qt
+from ..uiFiles import UiFilePaths
+from .baseWidget import BaseWidget
+from .adminCarDialog import AdminCarDialog
+from ..constants import Dialogs
 
-class AdminMainWindow(QWidget, Ui_admin_main):
-    def __init__(self):
-        super().__init__()
-        loadUi(r"ui\uiFiles\adminMainWindow.ui", self)
+from database import Table
+from model import Car
 
-        self.setFixedSize(1000, 750)
+from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QAbstractItemView
+from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import QSize
+
+class AdminMainWindow(Ui_admin_main, BaseWidget):
+    enable_double_click = False
+
+    def __init__(self, app_controller):
+        super().__init__(app_controller)
+        loadUi(UiFilePaths.ADMIN_MAIN, self)
+        
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)        
 
-        # Font ayarla
-        font = QFont("Roboto Mono", 14)
-        """
-        for row in range(5):
-            bgColor = "#FF2E63" if row % 2 else "#D1BEBC"
-            textColor = "white" if row % 2 else "black"
-            for column in range(7):
-                item = QTableWidgetItem(f"Item {row}, {column}")
-                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                item.setBackground(QColor(bgColor))
-                item.setForeground(QColor(textColor))
-                self.table.setItem(row, column, item)       """
+        self.cars:list[Car] = self.app_controller.db_transaction.get_entities(Table.CAR)
+        self.table.setRowCount(len(self.cars))
 
-    def onCarClicked(self, row, col):
-        if col == 0:
-            print(f"Car clicked: Row {row}")
+        [self.fill_table_row(row, car) for row, car in enumerate(self.cars)]
+
+        self.connect_signals()
+        self.set_properties()
+
+    def connect_signals(self):
+        self.add_car_btn.clicked.connect(self.open_dialog)
+        self.editing_active_btn.clicked.connect(self.change_table_edibility)
+        self.search_tf.textChanged.connect(self.filter_cars)
+
+    def set_properties(self):
+        self.add_car_btn.setProperty("class", "primary")
+        self.editing_active_btn.setProperty("dialog", "error")
+        self.search_tf.setProperty("class", "primary")
+
+    def fill_table_row(self, row: int, car: Car):
+        pixmap = car.image_pixmap.scaled(64, 64)
+        label = QLabel()
+        label.setPixmap(pixmap)
+        self.table.setCellWidget(row, 0, label)
+
+        columns = [
+            car.brand, car.model, str(car.year), car.gear_type.capitalize(),
+            car.gas_type.capitalize(), "Active" if car.status else "Inactive", f"{car.price:.2f}"
+        ]
+
+        for col, value in enumerate(columns, start=1):
+            self.table.setItem(row, col, QTableWidgetItem(value))
+
+        delete_btn = QPushButton()
+        delete_btn.setIcon(QIcon(r"assets\icons\trash.ico"))
+        delete_btn.clicked.connect(lambda: self.delete_car(self.table.currentRow()))
+        self.table.setCellWidget(row, 8, delete_btn)
+
+    def open_dialog(self, row: int = None, _ = None):
+        car = self.cars[row] if row else None
     
-    def onTrashClicked(self, row):
-        print(f"Trash clicked: Row {row}")
+        dialog = AdminCarDialog(self.app_controller, self, car)
+    
+        if dialog.exec():
+            car = dialog.get_data()
+            self.update_car(row, car) if row else self.add_car(car)
+
+    def add_car(self, car):
+        self.cars.append(car)
+        self.app_controller.db_transaction.add_new_entity(Table.CAR, car)
+        row = self.table.rowCount()
+        self.table.insertRow(row)
+        self.fill_table_row(row, car)
+
+    def update_car(self, row, updated_car):
+        self.cars[row] = updated_car
+        self.app_controller.db_transaction.update_entity(Table.CAR, updated_car)
+        self.fill_table_row(row, updated_car)
+
+    def delete_car(self, row):
+        response = self.app_controller.window_manager.show_dialog(Dialogs.WARNING, "Car Deletion", "Are you sure you want to delete the car?")  
+        
+        if not response:
+            return
+        
+        car = self.cars[row]
+        self.app_controller.db_transaction.delete_entity(Table.CAR, car.entity_id)
+        self.table.removeRow(row)
+        self.cars.pop(row)
+
+    def change_table_edibility(self):
+        if not self.enable_double_click:
+            self.editing_active_btn.setProperty("dialog", "success")
+            self.editing_active_btn.setText("Editing On")
+            self.table.cellDoubleClicked.connect(self.open_dialog)
+            self.enable_double_click = True
+        else:     
+            self.editing_active_btn.setProperty("dialog", "error")
+            self.editing_active_btn.setText("Editing Off")
+            self.table.cellDoubleClicked.disconnect()
+            self.enable_double_click = False
+
+        self.editing_active_btn.style().unpolish(self.editing_active_btn)
+        self.editing_active_btn.style().polish(self.editing_active_btn)
+    
+    def filter_cars(self):
+        keyword = self.search_tf.text()
+
+        for row in range(self.table.rowCount()):
+            name = f"{self.table.item(row, 1).text()} {self.table.item(row, 2).text()}".lower()
+            self.table.setRowHidden(row, not keyword.lower() in name)

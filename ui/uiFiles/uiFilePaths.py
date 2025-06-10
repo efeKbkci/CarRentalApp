@@ -12,3 +12,5 @@ class UiFilePaths:
     CAR_SELECTION = join(__base_directory, "carSelectionWindow.ui")
     VEHICLE_CARD = join(__base_directory, "vehicleCard.ui")
     BOOKING = join(__base_directory, "bookingWindow.ui")
+    DIALOG = join(__base_directory, "dialogBox.ui")
+    ADMIN_CAR_DIALOG = join(__base_directory, "adminCarDialog.ui")

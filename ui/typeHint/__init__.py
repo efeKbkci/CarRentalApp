@@ -6,3 +6,5 @@ from ._bookingWindow import Ui_booking
 from ._appointmentsWindow import Ui_appointments
 from ._appointmentCard import Ui_appointment_card
 from ._adminMainWindow import Ui_admin_main
+from ._dialogBox import Ui_dialog
+from ._adminCarDialog import Ui_admin_car_dialog

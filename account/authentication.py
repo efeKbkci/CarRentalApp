@@ -1,8 +1,10 @@
 from .session import Session
-from typing import Optional
+
 from model import User
 from database import Table
-from dataclasses import asdict
+
+from typing import Optional
+
 
 class Authentication:
     def __init__(self, app_controller):
@@ -16,9 +18,13 @@ class Authentication:
         return user
 
     def save_new_user(self, user: User) -> bool:
-        response = self.app_controller.db_transaction.add_new_entity(Table.USER, asdict(user))
+        response = self.app_controller.db_transaction.add_new_entity(Table.USER, user)
         response and self.start_new_session(user)
         return response
+    
+    def is_email_already_registered(self, email: str) -> bool:
+        user: User = self.app_controller.db_transaction.get_entity(Table.USER, {"email": email})
+        return user is not None
 
     def verify_verification_code(self, email: str) -> None: # TODO: MAIL SERVICE
         pass

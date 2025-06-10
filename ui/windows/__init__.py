@@ -5,4 +5,4 @@ from .adminMainWindow import AdminMainWindow
 from .carSelectionWindow import CarSelectionWindow
 from .bookingWindow import BookingWindow
 from .appointmentsWindow import AppointmentWindow
-from .windows_enum import Windows
+from .dialogBox import DialogBox

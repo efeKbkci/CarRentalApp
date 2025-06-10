@@ -86,7 +86,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="brand">
+       <widget class="QLabel" name="brand_label">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -107,7 +107,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="features">
+       <widget class="QLabel" name="features_label">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -126,7 +126,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="carImage">
+       <widget class="QLabel" name="car_image_label">
         <property name="text">
          <string/>
         </property>
@@ -141,7 +141,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QLabel" name="price">
+         <widget class="QLabel" name="price_label">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
             <horstretch>0</horstretch>

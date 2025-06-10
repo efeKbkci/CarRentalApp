@@ -1,7 +1,8 @@
-import pytest
 from account import Authentication
 from model import User, Priority
 from app_controller import AppController
+
+import pytest
 
 @pytest.fixture(scope="class")
 def authentication():

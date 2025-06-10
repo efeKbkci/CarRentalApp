@@ -38,7 +38,7 @@ class Validation:
         return birth_date <= eighteen_years_ago
     
     @staticmethod
-    def check_birth_date_format(birth_date: str) -> bool:
+    def check_date_format(birth_date: str) -> bool:
         # Expected format: DD.MM.YYYY
         try:
             datetime.strptime(birth_date, r"%d.%m.%Y")  

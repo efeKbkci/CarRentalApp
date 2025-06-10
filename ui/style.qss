@@ -1,0 +1,85 @@
+QPushButton[class="primary"] {
+    background-color: #1B47E5;
+    color : #F0F0F0;
+    border-radius: 4px;
+    font: 57 11pt "Roboto Mono Medium";
+}
+
+QPushButton[class="primary"]:hover {
+    background-color: #1D3282;
+}
+
+QPushButton[class="primary"]:pressed {
+    background-color: rgb(33, 58, 150);
+}
+
+QPushButton[class="primary"]:disabled {
+    background-color: #BFBFBF;
+    color: #1E1E1E;
+}
+
+QPushButton[dialog="error"] {
+    background-color: #EE404C;
+    color : #F0F0F0;
+    border-radius: 5px;
+    font: 57 10pt "Roboto Mono Medium";
+}
+
+QPushButton[dialog="warning"] {
+    background-color: #FF8000;
+    color : #F0F0F0;
+    border-radius: 5px;
+    font: 57 10pt "Roboto Mono Medium";
+}
+
+QPushButton[dialog="success"] {
+    background-color: #009D8F;
+    color : #F0F0F0;
+    border-radius: 5px;
+    font: 57 10pt "Roboto Mono Medium";
+}
+
+Line[dialog="error"] {
+    color: #EE404C;
+}
+
+Line[dialog="warning"] {
+    color: #FF8000;
+}
+
+Line[dialog="success"] {
+    color: #009D8F;
+}
+
+QLineEdit[class="form"] {
+    border: 1px solid #383838;
+    border-radius : 4px;
+    padding-left : 10px;
+	color : #383838;
+    background-color: transparent;
+}
+
+QLineEdit[class="form"]:focus {
+    border: 1px solid #1E1E1E;
+    border-radius : 4px;
+    padding-left : 10px;
+	color : #1E1E1E;
+    background-color: transparent;
+}
+
+QLineEdit[class="form"]:read-only {
+    border: 1px solid rgba(56, 56, 56, 0.7);
+    border-radius : 3px;
+    padding-left : 10px;
+	color : rgba(56, 56, 56, 0.7);
+    background-color: transparent;
+}
+
+QLineEdit[class="error"] {
+    border: 1px solid #EE404C;
+    border-radius : 4px;
+    padding-left : 10px;
+	color : rgba(56, 56, 56, 0.7);
+    background-color: transparent;
+}
+

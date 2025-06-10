@@ -46,10 +46,25 @@
    <item>
     <widget class="QFrame" name="frame">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>300</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>300</width>
+       <height>300</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -59,22 +74,59 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Roboto Mono SemiBold</family>
-          <pointsize>14</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
         </property>
-        <property name="text">
-         <string>Appointment ID</string>
+        <property name="bottomMargin">
+         <number>0</number>
         </property>
-       </widget>
+        <item>
+         <widget class="QLabel" name="car_name_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Roboto Mono SemiBold</family>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Car Name</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignRight">
+         <widget class="QPushButton" name="cancel_btn">
+          <property name="styleSheet">
+           <string notr="true">background-color: transparent;
+border: None;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../../assets/icons/x-mark-4-32.png</normaloff>../../assets/icons/x-mark-4-32.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="status_label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="font">
          <font>
           <family>Roboto Mono</family>
@@ -88,15 +140,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="car_image_label">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
-         <string>IMAGE PLACEHOLDER</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -119,14 +174,14 @@
           <number>0</number>
          </property>
          <item row="1" column="1">
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="starting_date_label">
            <property name="text">
             <string>TextLabel</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="return_date_label">
            <property name="text">
             <string>TextLabel</string>
            </property>
@@ -135,14 +190,14 @@
          <item row="2" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Car Delivery Date:</string>
+            <string>Return Date:</string>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Car Rental Date:</string>
+            <string>Starting Date:</string>
            </property>
           </widget>
          </item>

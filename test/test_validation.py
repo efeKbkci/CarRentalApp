@@ -37,4 +37,4 @@ def test_check_users_age(birth_date, correctness):
     ("03:05:2005", False)
 ])
 def test_check_birth_date_format(birth_date, correctness):
-    assert Validation.check_birth_date_format(birth_date) == correctness
+    assert Validation.check_date_format(birth_date) == correctness

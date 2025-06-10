@@ -1,5 +1,8 @@
 from .table import Table
+
 from model import User, Car, Appointment
+
+from dataclasses import asdict
 import sqlite3
 import os
 
@@ -11,7 +14,7 @@ class DBTransaction:
         self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
 
-    def get_entities(self, table: Table, filter:list):
+    def get_entities(self, table: Table, *filter):
         conditions = list() 
         values = list()
         for column, operand, value in filter:
@@ -39,7 +42,8 @@ class DBTransaction:
         entity_cls = self.table_entity_dict.get(table)
         return entity_cls(*row)
          
-    def add_new_entity(self, table: Table, data: dict):
+    def add_new_entity(self, table: Table, entity: object):
+        data = asdict(entity) 
         columns = ", ".join(data.keys()) # entity_id, name, email
         placeholder = ", ".join("?" * data.__len__()) # ?, ?, ?
         values = tuple(data.values()) # 123-dth-51-cv, efe, efkanefekabakcii@gmail.com
@@ -48,17 +52,18 @@ class DBTransaction:
             self.cursor.execute(f"INSERT INTO {table.value} ({columns}) VALUES ({placeholder})", values)
             self.conn.commit()
             return True
-        except sqlite3.IntegrityError:
-            print("DEBUG | This email is used already")
+        except sqlite3.IntegrityError as err:
             return False
 
-    def update_entity(self, table: Table, entity_id: str, data: dict):
-        columns = ", ".join([key + " = ?" for key in data.keys()]) # "name = ?, email = ?"
-        values = list(data.values())
-        values.append(entity_id)
-        self.cursor.execute(f"UPDATE {table.value} SET {columns} WHERE entity_id = ?", values)
+    def update_entity(self, table: Table, updated_entity: object):
+        data = asdict(updated_entity)
+        columns = ", ".join([key + " = ?" for key in list(data.keys())[:-1]]) # "name = ?, email = ?"
+        self.cursor.execute(f"UPDATE {table.value} SET {columns} WHERE entity_id = ?", tuple(data.values()))
         self.conn.commit()
 
     def delete_entity(self, table:Table, entity_id: str):
         self.cursor.execute(f"DELETE FROM {table.value} WHERE entity_id = ?", (entity_id,))
         self.conn.commit()
+
+    def close_connection(self):
+        self.conn.close()

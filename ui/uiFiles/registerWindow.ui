@@ -14,15 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLineEdit {
-	padding-left : 10px;
-	border: 2px solid #383838;
-	border-radius : 4px;
-	background-color: transparent;
-	color : #383838;
-}
-
-</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -261,6 +253,9 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="register_btn">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="minimumSize">
       <size>
        <width>400</width>
@@ -274,20 +269,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: #1B47E5;
-	color : #F0F0F0;
-	border-radius: 4px;
-	font: 57 11pt &quot;Roboto Mono Medium&quot;;
-}
-
-QPushButton::hover {
-	background-color: #1D3282;
-}
-
-QPushButton::pressed {
-	background-color: rgb(33, 58, 150);
-}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Register</string>
