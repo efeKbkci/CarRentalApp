@@ -22,31 +22,63 @@ class WindowManager(QMainWindow):
         self.stacked_widget = CustomStackedWidget(self)
 
         self.setCentralWidget(self.stacked_widget)
-
-        self.window_dict = {
-            Windows.LOGIN: LoginWindow(app_controller),
-            Windows.REGISTER: RegisterWindow(app_controller),
-            Windows.NORMAL_USER_MAIN: UserMainWindow(app_controller),
-            Windows.ADMIN_MAIN: AdminMainWindow(app_controller),
-            Windows.CAR_SELECTION: CarSelectionWindow(app_controller),
-            Windows.BOOKING: BookingWindow(app_controller),
-            Windows.APPOINTMENTS: AppointmentWindow(app_controller)
-        }
+        self.setWindowTitle("Car Rental Application")
 
         self.window_size_dict = {
             Windows.LOGIN: QSize(800, 600),
             Windows.REGISTER: QSize(800, 600),
-            Windows.NORMAL_USER_MAIN: QSize(800, 600),
-            Windows.ADMIN_MAIN: QSize(1000, 750),
             Windows.CAR_SELECTION: QSize(1000, 750),
             Windows.BOOKING: QSize(1000, 750),
             Windows.APPOINTMENTS: QSize(1000, 750)
         }
 
-        [self.stacked_widget.addWidget(widget) for widget in self.window_dict.values()]
+        self.login_screen = LoginWindow(app_controller)
+        self.register_screen = RegisterWindow(app_controller)
+
+        self.window_dict = {
+            Windows.LOGIN: self.login_screen,
+            Windows.REGISTER: self.register_screen
+        }
+
+        self.stacked_widget.addWidget(self.login_screen)
+        self.stacked_widget.addWidget(self.register_screen)
+
         self.dialog = DialogBox(None)
 
-        self.center_widget(self.window_size_dict[Windows.LOGIN])
+        self.center_widget(self.login_screen)
+
+    def create_user_windows(self):
+        window_dict = {
+            Windows.NORMAL_USER_MAIN: UserMainWindow(self.app_controller),
+            Windows.CAR_SELECTION: CarSelectionWindow(self.app_controller),
+            Windows.BOOKING: BookingWindow(self.app_controller),
+            Windows.APPOINTMENTS: AppointmentWindow(self.app_controller)
+        }
+
+        [self.stacked_widget.addWidget(widget) for widget in window_dict.values()]
+        
+        self.window_size_dict[Windows.NORMAL_USER_MAIN] = QSize(800, 600)
+
+        self.window_dict.update(window_dict) 
+
+    def create_admin_window(self):
+        admin_main = AdminMainWindow(self.app_controller)
+        self.stacked_widget.addWidget(admin_main)
+        self.window_dict[Windows.ADMIN_MAIN] = admin_main      
+        self.window_size_dict[Windows.ADMIN_MAIN] = QSize(1000, 750)  
+
+    def delete_user_windows(self):
+        for index in (Windows.NORMAL_USER_MAIN, Windows.CAR_SELECTION, Windows.BOOKING, Windows.APPOINTMENTS):
+            self.remove_window(index)
+
+    def delete_admin_window(self):
+        self.remove_window(Windows.ADMIN_MAIN)
+
+    def remove_window(self, window_index: Windows):
+        window = self.window_dict[window_index]
+        self.stacked_widget.removeWidget(window)
+        window.deleteLater()
+        self.window_dict.pop(window_index)
 
     def navigate_to_window(self, window: Windows):
         self.stacked_widget.setCurrentIndex(window.value)

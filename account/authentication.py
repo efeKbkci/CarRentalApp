@@ -26,9 +26,6 @@ class Authentication:
         user: User = self.app_controller.db_transaction.get_entity(Table.USER, {"email": email})
         return user is not None
 
-    def verify_verification_code(self, email: str) -> None: # TODO: MAIL SERVICE
-        pass
-
     def start_new_session(self, user: User) -> None:
         self.session = Session(user) 
 

@@ -1,16 +1,16 @@
 from .. import *
 from ..typeHint import Ui_admin_main
 from ..uiFiles import UiFilePaths
-from .baseWidget import BaseWidget
+from ..helperWidgets.baseWidget import BaseWidget
 from .adminCarDialog import AdminCarDialog
 from ..constants import Dialogs
+from ..helperWidgets import TopAppBar
 
 from database import Table
 from model import Car
 
 from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QAbstractItemView
 from PyQt6.QtGui import QIcon
-from PyQt6.QtCore import QSize
 
 class AdminMainWindow(Ui_admin_main, BaseWidget):
     enable_double_click = False
@@ -26,6 +26,9 @@ class AdminMainWindow(Ui_admin_main, BaseWidget):
         self.table.setRowCount(len(self.cars))
 
         [self.fill_table_row(row, car) for row, car in enumerate(self.cars)]
+
+        self.top_app_bar = TopAppBar(app_controller, window_title = "Car Management", show_back = False)
+        self.mainLayout.insertWidget(0, self.top_app_bar)
 
         self.connect_signals()
         self.set_properties()

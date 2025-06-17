@@ -79,7 +79,7 @@ QLineEdit[class="error"] {
     border: 1px solid #EE404C;
     border-radius : 4px;
     padding-left : 10px;
-	color : rgba(56, 56, 56, 0.7);
+	color : rgba(56, 56, 56, 1);
     background-color: transparent;
 }
 

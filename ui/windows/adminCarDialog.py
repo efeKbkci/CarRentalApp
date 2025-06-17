@@ -7,6 +7,7 @@ from model import Car
 
 from PyQt6.QtWidgets import QDialog, QFileDialog
 from PyQt6.QtGui import QIntValidator, QDoubleValidator 
+import re
 
 class AdminCarDialog(QDialog, Ui_admin_car_dialog):
     def __init__(self, app_controller, parent = None, car: Car = None):
@@ -77,7 +78,10 @@ class AdminCarDialog(QDialog, Ui_admin_car_dialog):
             self, "Choose Image", "", "Image Files (*.png *.jpg *.jpeg *.bmp *.webp)"
         )
         if file_path:
-            self.image_path = file_path
-            self.car_image_label.setPixmap(QPixmap(file_path).scaled(85,28))
+            relative_path = re.search(r"assets[\\\/]cars[\\\/].*", file_path)
+            if relative_path:
+                self.image_path = relative_path.group()
+            print(relative_path)
+            self.car_image_label.setPixmap(QPixmap(self.image_path).scaled(85,28))
             
         self.validate_entries()

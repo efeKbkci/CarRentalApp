@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QLabel, QPushButton, QCheckBox, QLineEdit, QWidget
+from PyQt6.QtWidgets import QLabel, QPushButton, QCheckBox, QLineEdit, QWidget, QVBoxLayout
 
 class Ui_car_selection:
     window_title_label: QLabel
@@ -15,6 +15,7 @@ class Ui_car_selection:
     apply_btn: QPushButton
     back_btn: QPushButton
     widget_for_cards: QWidget
+    mainLayout: QVBoxLayout
 
     @property
     def filter_text_fields(self):

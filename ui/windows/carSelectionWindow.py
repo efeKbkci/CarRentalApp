@@ -1,9 +1,9 @@
-from .baseWidget import BaseWidget
 from .vehicleCard import VehicleCard
 
 from .. import loadUi, UiFilePaths
 from ..constants import Windows
 from ..typeHint import Ui_car_selection
+from ..helperWidgets import BaseWidget, TopAppBar
 
 from model import Car, CarFeatures
 from database import Table
@@ -23,6 +23,9 @@ class CarSelectionWindow(Ui_car_selection, BaseWidget):
 
         self.set_properties()
 
+        self.top_app_bar = TopAppBar(app_controller, window_title = "Car Selection")
+        self.mainLayout.insertWidget(0, self.top_app_bar)
+        
         self.connect_signals()
     
         [self.change_place_holder_color(tf, "black") for tf in self.filter_text_fields]
@@ -34,7 +37,7 @@ class CarSelectionWindow(Ui_car_selection, BaseWidget):
 
     def connect_signals(self):
         self.apply_btn.clicked.connect(self.place_cars)
-        self.back_btn.clicked.connect(lambda: self.app_controller.window_manager.navigate_to_window(Windows.NORMAL_USER_MAIN))
+        self.top_app_bar.back_btn.clicked.connect(lambda: self.app_controller.window_manager.navigate_to_window(Windows.NORMAL_USER_MAIN))
 
     def set_properties(self):
         self.apply_btn.setProperty("class", "primary")

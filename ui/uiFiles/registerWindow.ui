@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Register</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -46,6 +46,9 @@
        <family>Roboto Mono</family>
        <pointsize>35</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: black;</string>
      </property>
      <property name="text">
       <string>Register</string>
@@ -274,6 +277,9 @@
      <property name="text">
       <string>Register</string>
      </property>
+     <property name="shortcut">
+      <string>Return</string>
+     </property>
     </widget>
    </item>
    <item>
@@ -288,6 +294,19 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">color: #1E1E1E;</string>
+     </property>
+     <property name="text">
+      <string>Press ESC to return to the login screen</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

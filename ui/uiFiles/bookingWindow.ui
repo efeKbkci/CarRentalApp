@@ -29,9 +29,14 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Booking</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <property name="styleSheet">
+   <string notr="true">QLabel {
+	color: black;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -47,95 +52,6 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item>
-    <widget class="QWidget" name="top_app_bar" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>100</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>100</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#top_app_bar{
-	background-color: rgb(27, 71, 229);
-}
-
-QLabel {
-	color: #F0F0F0;
-}</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QPushButton" name="back_btn">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: transparent;
-border: None;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../../assets/icons/back_navigation.png</normaloff>../../assets/icons/back_navigation.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="booking_label">
-        <property name="font">
-         <font>
-          <family>Roboto Mono</family>
-          <pointsize>24</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Booking</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item>
     <widget class="QWidget" name="main_widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -547,7 +463,9 @@ border: None;</string>
            <property name="font">
             <font>
              <family>Roboto Mono</family>
-             <pointsize>18</pointsize>
+             <pointsize>22</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -627,6 +545,12 @@ border: None;</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Roboto Mono</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
@@ -692,6 +616,12 @@ border: None;</string>
                <width>350</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Roboto Mono</family>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -759,6 +689,12 @@ border: None;</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Roboto Mono</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
@@ -810,6 +746,9 @@ border: None;</string>
            </property>
            <property name="text">
             <string>Create an Appointment</string>
+           </property>
+           <property name="shortcut">
+            <string>Return</string>
            </property>
           </widget>
          </item>

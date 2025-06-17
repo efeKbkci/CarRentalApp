@@ -1,4 +1,4 @@
-from .baseWidget import BaseWidget
+from ..helperWidgets.baseWidget import BaseWidget
 
 from .. import loadUi, UiFilePaths
 from ..constants import Windows, Dialogs 
@@ -10,6 +10,9 @@ from model import User, Priority
 import os
 from datetime import datetime
 from PyQt6.QtGui import QIntValidator 
+    
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QKeyEvent
 
 class RegisterWindow(Ui_register, BaseWidget):    
 
@@ -65,13 +68,12 @@ class RegisterWindow(Ui_register, BaseWidget):
             self.register_btn.setDisabled(True)
 
     def register_btn_clicked(self):
-
         response = self.app_controller.window_manager.show_dialog(Dialogs.WARNING, "Registration Confirmation", "Are you sure you want to create a new user record?")
         if not response:
             return
 
         if self.is_email_already_registered():
-            self.app_controller.window_manager.show_dialog(Dialogs.ERROR, "Registration Failed", "Email has already been registered in the system.", False)
+            self.app_controller.window_manager.show_dialog(Dialogs.ERROR, "Registration Failed", "Email has already been registered in the system.", True)
             return
 
         form = User(
@@ -85,6 +87,7 @@ class RegisterWindow(Ui_register, BaseWidget):
 
         if self.app_controller.authentication.save_new_user(form):
             self.app_controller.window_manager.show_dialog(Dialogs.SUCCESS, "Registration is Successful", single_btn = True)
+            self.app_controller.window_manager.create_user_windows()
             self.app_controller.window_manager.navigate_to_window(Windows.NORMAL_USER_MAIN)    
         
     def is_email_already_registered(self):
@@ -92,3 +95,9 @@ class RegisterWindow(Ui_register, BaseWidget):
         is_registered = self.app_controller.authentication.is_email_already_registered(email)
         self.update_error_style(self.email_tf, is_registered, "This email is already registered")
         return is_registered
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() == Qt.Key.Key_Escape:
+            self.app_controller.window_manager.navigate_to_window(Windows.LOGIN)
+        else:
+            super().keyPressEvent(event)

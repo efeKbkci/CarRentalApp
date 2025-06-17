@@ -22,16 +22,18 @@ class DialogBox(Ui_dialog, QDialog):
 
         if single_btn: 
             self.cancellation_btn.hide()
-            self.update()
+        else: 
+            self.cancellation_btn.show()
+        self.cancellation_btn.update()
 
         if dialog_type == Dialogs.ERROR: 
             self.__customize_dialog(r"assets\icons\warning.png", subject, message, DialogColor.ERROR)
             self.confirmation_btn.setText("Confirm")
-            self.cancellation_btn.show()
 
         elif dialog_type == Dialogs.WARNING: 
             self.__customize_dialog(r"assets\icons\problem.png", subject, message, DialogColor.WARNING)
             self.confirmation_btn.setText("Okey")
+
         else: 
             self.__customize_dialog(r"assets\icons\approve.png", subject, message, DialogColor.SUCCESS)
             self.confirmation_btn.setText("Okey")

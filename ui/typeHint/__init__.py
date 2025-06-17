@@ -8,3 +8,5 @@ from ._appointmentCard import Ui_appointment_card
 from ._adminMainWindow import Ui_admin_main
 from ._dialogBox import Ui_dialog
 from ._adminCarDialog import Ui_admin_car_dialog
+from ._topAppBar import Ui_top_app_bar
+from ._userMainWindow import Ui_user_main

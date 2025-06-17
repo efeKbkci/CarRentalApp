@@ -1,4 +1,4 @@
-from .baseWidget import BaseWidget
+from ..helperWidgets.baseWidget import BaseWidget
 
 from .. import UiFilePaths, loadUi
 from ..constants import Windows, Dialogs
@@ -38,9 +38,11 @@ class LoginWindow(Ui_login, BaseWidget):
             self.app_controller.window_manager.show_dialog(Dialogs.ERROR, "Incorrect Username or Password", "The user information you entered does not match a user", True)
 
         elif user.priority == Priority.NORMAL_USER:
+            self.app_controller.window_manager.create_user_windows()
             self.app_controller.window_manager.navigate_to_window(Windows.NORMAL_USER_MAIN)
 
         elif user.priority == Priority.ADMIN: # I didn't use else keyword directly due to increase understandability
+            self.app_controller.window_manager.create_admin_window()
             self.app_controller.window_manager.navigate_to_window(Windows.ADMIN_MAIN)
 
     def register_btn_clicked(self):

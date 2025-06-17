@@ -1,8 +1,7 @@
-from .baseWidget import BaseWidget
-
 from .. import loadUi, UiFilePaths
 from ..constants import Windows, Dialogs
 from ..typeHint import Ui_booking
+from ..helperWidgets import BaseWidget, TopAppBar
 
 from model import Car, Appointment
 from database import Table
@@ -20,11 +19,15 @@ class BookingWindow(Ui_booking, BaseWidget):
         self.set_background_image(self, os.path.join("assets", "tireTrackBg.jpg"))
 
         self.set_properties()
+
+        self.top_app_bar = TopAppBar(app_controller, window_title = "Booking")
+        self.mainLayout.insertWidget(0, self.top_app_bar)
+        
         self.connect_signals()
 
     def connect_signals(self):
         self.create_appointment_btn.clicked.connect(self.create_appointment)
-        self.back_btn.clicked.connect(self.back_btn_clicked)
+        self.top_app_bar.back_btn.clicked.connect(self.back_btn_clicked)
         [tf.textChanged.connect(self.validate_date) for tf in (self.starting_date_tf, self.return_date_tf)]
     
     def set_properties(self):

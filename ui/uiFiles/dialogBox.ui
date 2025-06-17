@@ -34,6 +34,10 @@
   <property name="styleSheet">
    <string notr="true">#dialog {
 	border-radius: 7px;
+}
+
+QLabel {
+	color: #1E1E1E;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
