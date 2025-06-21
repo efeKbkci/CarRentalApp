@@ -32,11 +32,11 @@ class DialogBox(Ui_dialog, QDialog):
 
         elif dialog_type == Dialogs.WARNING: 
             self.__customize_dialog(r"assets\icons\problem.png", subject, message, DialogColor.WARNING)
-            self.confirmation_btn.setText("Okey")
+            self.confirmation_btn.setText("Okay")
 
         else: 
             self.__customize_dialog(r"assets\icons\approve.png", subject, message, DialogColor.SUCCESS)
-            self.confirmation_btn.setText("Okey")
+            self.confirmation_btn.setText("Okay")
 
     def __customize_dialog(self, icon_path: str, subject: str, message: str, line_color: str):
             

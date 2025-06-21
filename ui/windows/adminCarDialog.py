@@ -22,7 +22,7 @@ class AdminCarDialog(QDialog, Ui_admin_car_dialog):
             self.brand_tf.setText(car.brand)
             self.model_tf.setText(car.model)
             self.year_tf.setText(str(car.year))
-            self.price_tf.setText(str(car.price))
+            self.price_tf.setText(str(int(car.price)))
             self.fuel_combo.setCurrentText(car.gas_type.capitalize())
             self.gear_combo.setCurrentText(car.gear_type.capitalize())
             status = "Active" if car.status else "Inactive"
@@ -81,7 +81,6 @@ class AdminCarDialog(QDialog, Ui_admin_car_dialog):
             relative_path = re.search(r"assets[\\\/]cars[\\\/].*", file_path)
             if relative_path:
                 self.image_path = relative_path.group()
-            print(relative_path)
             self.car_image_label.setPixmap(QPixmap(self.image_path).scaled(85,28))
             
         self.validate_entries()

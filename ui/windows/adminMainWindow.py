@@ -34,7 +34,7 @@ class AdminMainWindow(Ui_admin_main, BaseWidget):
         self.set_properties()
 
     def connect_signals(self):
-        self.add_car_btn.clicked.connect(self.open_dialog)
+        self.add_car_btn.clicked.connect(lambda: self.open_dialog())
         self.editing_active_btn.clicked.connect(self.change_table_edibility)
         self.search_tf.textChanged.connect(self.filter_cars)
 
@@ -63,13 +63,19 @@ class AdminMainWindow(Ui_admin_main, BaseWidget):
         self.table.setCellWidget(row, 8, delete_btn)
 
     def open_dialog(self, row: int = None, _ = None):
-        car = self.cars[row] if row else None
+        if row == None:
+            car = None
+        else: 
+            car = self.cars[row]
     
         dialog = AdminCarDialog(self.app_controller, self, car)
     
         if dialog.exec():
             car = dialog.get_data()
-            self.update_car(row, car) if row else self.add_car(car)
+            if row == None:
+                self.add_car(car)
+            else:
+                self.update_car(row, car) 
 
     def add_car(self, car):
         self.cars.append(car)

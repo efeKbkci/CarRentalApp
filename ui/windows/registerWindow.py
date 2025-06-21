@@ -62,10 +62,7 @@ class RegisterWindow(Ui_register, BaseWidget):
             self.id_tf.text() != "", self.name_tf.text() != ""
         )
 
-        if all(validation):
-            self.register_btn.setEnabled(True)
-        else:
-            self.register_btn.setDisabled(True)
+        self.register_btn.setEnabled(all(validation))
 
     def register_btn_clicked(self):
         response = self.app_controller.window_manager.show_dialog(Dialogs.WARNING, "Registration Confirmation", "Are you sure you want to create a new user record?")
